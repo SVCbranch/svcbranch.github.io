@@ -152,11 +152,29 @@
         width: 100%;
       }
     }
+    a {
+        display: inline-block;
+    }
+    .content-box {
+      background: linear-gradient(to right, #3f3f3f, #0e0e0e);
+      border-radius: 33px;
+      padding: 20px;
+      text-align: center;
+      max-width: 600px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    }
+  .content-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://files.catbox.moe/4kfnpu.png" alt="Logo ItPCS" width="150">
+    <a href="index.html">
+        <img src="https://files.catbox.moe/4kfnpu.png" alt="Logo ItPCS" width="150">
+    </a>
     <nav>
       <button id="menu-toggle" aria-label="Ouvrir/fermer le menu">
         <i class="fas fa-bars"></i>
@@ -216,10 +234,39 @@
         </div>
       </div>
     </section>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="content-box">
+          <h2 class="dm-serif-display-regular-middle">Notre Équipe</h2>
+          <p>Notre équipe dévouée travaille sans relâche pour vous offrir les meilleurs billets PCS. Nous nous engageons à fournir un service de qualité et à répondre à toutes vos questions.</p>
+          <p>Nous sommes là pour vous aider.</p>
+      </div>
+  </div>
+    <div class="container py-5">
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner text-center">
+              <div class="carousel-item active">
+                  <p>Un service exceptionnel.</p>
+                  <p><b>- Mark John -</b></p>
+              </div>
+              <div class="carousel-item">
+                  <p>Une expérience d'achat en ligne facile et rapide.</p>
+                  <p><b>- Jaison Warner -</b></p>
+              </div>
+              <div class="carousel-item">
+                  <p>Achat de billets très simple! Je suis très satisfait de mon expérience.</p>
+                  <p><b>- Tony Antonio -</b></p>
+              </div>
+              <div class="carousel-item">
+                  <p>J'adore!</p>
+                  <p><b>- John Fortnite -</b></p>
+              </div>
+          </div>
+      </div>
+  </div>
   </main>
 
   <footer>
-    <p>&copy; 2024 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
+    <p>&copy; 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
   </footer>
 
   <!-- Script pour le menu hamburger -->
