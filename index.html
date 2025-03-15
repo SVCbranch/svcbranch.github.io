@@ -199,7 +199,7 @@
     #glitch-banner {
       left: 0;
       width: 100%;
-      height: 300px;
+      height: 600px;
       position: absolute;
       z-index: 1;
       pointer-events: none;
@@ -409,12 +409,12 @@
           overflow-x: hidden;
         }
         .spacer {
-          height: 30vh;
+          height: 10vh;
           position: relative;
         }
         @media (max-width: 768px) {
           .spacer {
-            height: 12vh;
+            height: 0vh;
             position: relative;
           }
         }
@@ -444,9 +444,9 @@
           containerClassName = "",
           textClassName = "",
           // Déclencheurs pour que l'animation se fasse quand le texte est centré
-          rotationStart = "top bottom",
-          rotationEnd = "center center",
-          wordAnimationStart = "top bottom",
+          rotationStart = "top center",
+          rotationEnd = "bottom center",
+          wordAnimationStart = "top center",
           wordAnimationEnd = "center center"
         }) => {
           const containerRef = useRef(null);
@@ -583,7 +583,6 @@
   
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       </script>
-      </h4>
     </main>
     </section>
     <section id="produits">
