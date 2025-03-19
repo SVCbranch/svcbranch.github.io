@@ -1,214 +1,214 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ItPCS - Comment ça marche ?</title>
-    <link rel="icon" href="favicon.png" />
-    <style>
-        body {
-            background-color: #0e0e0e;
-            color: white;
-            font-family: sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header, footer {
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-        header img {
-            display: block;
-            margin: 0 auto;
-        }
-        .surligne-mark {
-            background-color: #F8FF98;
-            color: black;
-            border-radius: 10px;
-            padding: 1px 6px;
-        }
-        .dm-serif-display-regular {
-            font-family: "DM Serif Display", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-        .dm-serif-display-regular-middle {
-            font-family: "DM Serif Display", serif;
-            font-weight: 600;
-            font-style: normal;
-        }
-        .dm-serif-display-regular-gros {
-            font-family: "DM Serif Display", serif;
-            font-weight: 900;
-            font-style: normal;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-        #comment-ca-marche ol li {
-            background: #fff;
-            padding: 25px 25px 25px 70px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            opacity: 0.8;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-            position: relative;
-            transition: all 0.3s ease;
-            color: black;
-        }
-        #comment-ca-marche ol li:hover {
-            transform: translateX(10px);
-        }
-        details {
-            margin-bottom: 15px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: summary 0.4s linear;
-            opacity: 0.8;
-        }
-        details[open], details:hover {
-            border-color: #FFD700;
-            box-shadow: 0 3px 15px rgba(255,107,107,0.1);
-            opacity: 1;
-            max-height: 500px;
-        }
-        summary {
-            padding: 18px 25px;
-            cursor: pointer;
-            list-style: none;
-            background: #f8f9fa;
-            font-weight: 600;
-            position: relative;
-            color: black;
-        }
-        summary::-webkit-details-marker {
-            display: none;
-        }
-        summary::after {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.3s ease;
-        }
-        details[open] summary::after, details:hover summary::after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-        details p {
-            padding: 20px 25px;
-            background: white;
-            margin: 0;
-            line-height: 1.7;
-            border-top: 1px solid #eee;
-            color: black;
-        }
-        a {
-            display: inline-block;
-        }
-        .content-box {
-            background: linear-gradient(to right, #2f2f2f, #0e0e0e);
-            border-radius: 33px;
-            padding: 20px;
-            text-align: center;
-            max-width: 600px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-        }
-        .content-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            opacity: 0.9;
-        }
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-                padding: 0 10px;
-            }
-            .produit {
-                width: 48%;
-            }
-        }
-        @media (max-width: 480px) {
-            .produit {
-                width: 100%;
-            }
-        }
-    </style>    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ItPCS - Comment ça marche ?</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: white;
+      font-family: sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    header img {
+      display: block;
+      margin: 0 auto;
+    }
+    .surligne-mark {
+      background-color: #F8FF98;
+      color: black;
+      border-radius: 10px;
+      padding: 1px 6px;
+    }
+    .dm-serif-display-regular {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .dm-serif-display-regular-middle {
+      font-family: "DM Serif Display", serif;
+      font-weight: 600;
+      font-style: normal;
+    }
+    .dm-serif-display-regular-gros {
+      font-family: "DM Serif Display", serif;
+      font-weight: 900;
+      font-style: normal;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+    #comment-ca-marche ol li {
+      background: #fff;
+      padding: 25px 25px 25px 70px;
+      margin-bottom: 30px;
+      border-radius: 20px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      position: relative;
+      transition: all 0.3s ease;
+      color: black;
+      opacity: 0.8;
+    }
+    #comment-ca-marche ol li:hover {
+      transform: translateX(10px);
+    }
+    details {
+      margin-bottom: 15px;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    summary {
+      padding: 18px 25px;
+      cursor: pointer;
+      list-style: none;
+      background: #f8f9fa;
+      font-weight: 600;
+      position: relative;
+      color: black;
+      opacity: 0.8;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary::after {
+      content: '▼';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    details[open] summary::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    details p {
+      background: white;
+      margin: 0;
+      line-height: 1.7;
+      border: 2px solid #eee;
+      color: black;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    }
+    details[open] p {
+      padding: 20px 25px;
+      max-height: 500px;
+      border-color: #F8FF98;
+      box-shadow: 0 3px 15px rgba(255, 107, 107, 0.1);
+    }
+    a {
+      display: inline-block;
+    }
+    .content-box {
+      background: linear-gradient(to right, #2f2f2f, #0e0e0e);
+      border-radius: 33px;
+      padding: 20px;
+      text-align: center;
+      max-width: 600px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    }
+    .content-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0.9;
+    }
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+        padding: 0 10px;
+      }
+      .produit {
+        width: 48%;
+      }
+    }
+    @media (max-width: 480px) {
+      .produit {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-      <a href="index.html">
-          <img src="https://files.catbox.moe/4kfnpu.png" alt="Logo ItPCS" width="150">
-      </a>
-    </header>
-    <main>
-        <section id="comment-ca-marche">
-            <div class="container">
-                <h2>Comment ça marche ?</h2>
-                <ol>
-                    <li>Rendez-vous dans un bureau de tabac ou un point de vente agréé.</li>
-                    <li>Demandez une recharge ItPCS du montant souhaité.</li>
-                    <li>Payez votre recharge en espèces ou par carte bancaire.</li>
-                    <li>Le distributeur vous remettra un ticket contenant un code unique.</li>
-                    <li>Utilisez ce code sur les sites partenaires ItPCS pour créditer votre compte.</li>
-                </ol>
-                <h3>FAQ</h3>
-                <details>
-                    <summary>Qu'est-ce qu'une carte ItPCS ?</summary>
-                    <p>Une carte ItPCS est une carte de paiement prépayée rechargeable, utilisable en ligne et dans les magasins physiques. Elle n'est liée à aucun compte bancaire et permet de contrôler ses dépenses.</p>
-                </details>
-                <details>
-                    <summary>Où puis-je acheter une recharge ItPCS ?</summary>
-                    <p>Vous pouvez acheter une recharge ItPCS dans la plupart des bureaux de tabac et dans certains autres points de vente agréés (magasins de presse, stations-service...).</p>
-                </details>
-                <details>
-                    <summary>Comment recharger ma carte ItPCS ?</summary>
-                    <p>Pour recharger votre carte ItPCS, vous devez acheter une recharge (un ticket) dans un point de vente physique. Ce ticket contient un code unique que vous utiliserez ensuite sur le site de ItPCS ou sur les sites partenaires.</p>
-                </details>
-                <details>
-                    <summary>Puis-je acheter une recharge ItPCS en ligne ?</summary>
-                    <p>Non, ItPCS ne propose pas la vente de recharges ItPCS en ligne. Les recharges ItPCS s'achètent exclusivement en points de vente physiques.</p>
-                </details>
-                <details>
-                    <summary>Mon code de recharge ne fonctionne pas. Que faire ?</summary>
-                    <p>Vérifiez d'abord que vous avez correctement saisi le code. Si le problème persiste, contactez le service client de ItPCS, munissez de votre ticket de caisse et du code de recharge.</p>
-                </details>
-                <details>
-                    <summary>Quelle est la différence entre une carte ItPCS et une recharge ItPCS ?</summary>
-                    <p>La carte ItPCS est le support physique (la carte elle-même). La recharge ItPCS est le moyen de créditer cette carte. Vous achetez une recharge pour ajouter de l'argent sur votre carte ItPCS.</p>
-                </details>
-                <details>
-                    <summary>Les recharges ItPCS ont-elles une date d'expiration ?</summary>
-                    <p>Oui, les recharges ItPCS ont généralement une date d'expiration. Vérifiez la date indiquée sur votre ticket.</p>
-                </details>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
-        <p style="line-height: 0.5; font-size: 10px;">Ceci est un concept, ItPCS est un compagnie fictive.</p>
-        <p style="line-height: 0.5; font-size: 10px;">Nous ne sommes pas affiliés à Mastercard ou à la</p>
-        <p style="line-height: 0.8; font-size: 10px;">International Telecommunications Public Correspondence Service.</p>
-      </footer>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll("details").forEach((detail) => {
-                detail.addEventListener("mouseenter", function () {
-                    this.setAttribute("open", "true");
-                });
-
-                detail.addEventListener("mouseleave", function () {
-                    setTimeout(() => {
-                        this.removeAttribute("open");
-                    }, 400);
-                });
-            });
+  <header>
+    <a href="index.html">
+      <img src="https://files.catbox.moe/4kfnpu.png" alt="Logo ItPCS" width="150">
+    </a>
+  </header>
+  <main>
+    <section id="comment-ca-marche">
+      <div class="container">
+        <h2 class="dm-serif-display-regular-gros" style="font-size: calc(1.325rem + .9vw);">Comment ça marche ?</h2>
+        <ol>
+          <li>Rendez-vous dans un bureau de tabac ou un point de vente agréé.</li>
+          <li>Demandez une recharge ItPCS du montant souhaité.</li>
+          <li>Payez votre recharge en espèces ou par carte bancaire.</li>
+          <li>Le distributeur vous remettra un ticket contenant un code unique.</li>
+          <li>Utilisez ce code sur les sites partenaires ItPCS pour créditer votre compte.</li>
+        </ol>
+        <h3 class="dm-serif-display-regular-gros" style="font-size: calc(1.325rem + .9vw);">FAQ</h3>
+        <details>
+          <summary>Qu'est-ce qu'une carte ItPCS ?</summary>
+          <p>Une carte ItPCS est une carte de paiement prépayée rechargeable, utilisable en ligne et dans les magasins physiques. Elle n'est liée à aucun compte bancaire et permet de contrôler ses dépenses.</p>
+        </details>
+        <details>
+          <summary>Où puis-je acheter une recharge ItPCS ?</summary>
+          <p>Vous pouvez acheter une recharge ItPCS dans la plupart des bureaux de tabac et dans certains autres points de vente agréés (magasins de presse, stations-service...).</p>
+        </details>
+        <details>
+          <summary>Comment recharger ma carte ItPCS ?</summary>
+          <p>Pour recharger votre carte ItPCS, vous devez acheter une recharge (un ticket) dans un point de vente physique. Ce ticket contient un code unique que vous utiliserez ensuite sur le site de ItPCS ou sur les sites partenaires.</p>
+        </details>
+        <details>
+          <summary>Puis-je acheter une recharge ItPCS en ligne ?</summary>
+          <p>Non, ItPCS ne propose pas la vente de recharges ItPCS en ligne. Les recharges ItPCS s'achètent exclusivement en points de vente physiques.</p>
+        </details>
+        <details>
+          <summary>Mon code de recharge ne fonctionne pas. Que faire ?</summary>
+          <p>Vérifiez d'abord que vous avez correctement saisi le code. Si le problème persiste, contactez le service client de ItPCS, munissez de votre ticket de caisse et du code de recharge.</p>
+        </details>
+        <details>
+          <summary>Quelle est la différence entre une carte ItPCS et une recharge ItPCS ?</summary>
+          <p>La carte ItPCS est le support physique (la carte elle-même). La recharge ItPCS est le moyen de créditer cette carte. Vous achetez une recharge pour ajouter de l'argent sur votre carte ItPCS.</p>
+        </details>
+        <details>
+          <summary>Les recharges ItPCS ont-elles une date d'expiration ?</summary>
+          <p>Oui, les recharges ItPCS ont généralement une date d'expiration. Vérifiez la date indiquée sur votre ticket.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
+    <p style="line-height: 0.5; font-size: 10px;">Ceci est un concept, ItPCS est un compagnie fictive.</p>
+    <p style="line-height: 0.5; font-size: 10px;">Nous ne sommes pas affiliés à Mastercard ou à la</p>
+    <p style="line-height: 0.8; font-size: 10px;">International Telecommunications Public Correspondence Service.</p>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll("details").forEach((detail) => {
+        detail.addEventListener("mouseenter", function () {
+          this.setAttribute("open", "true");
         });
-    </script>
-    </body>
+      });
+    });
+  </script>
+</body>
 </html>
