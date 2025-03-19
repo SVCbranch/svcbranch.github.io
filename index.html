@@ -26,12 +26,6 @@
       text-align: center;
       position: relative;
     }
-    /* Style pour le logo */
-    header img {
-      display: block;
-      margin: 0 auto;
-    }
-    /* Bouton hamburger */
     #menu-toggle {
       background: none;
       border: none;
@@ -43,16 +37,14 @@
       top: 20px;
       z-index: 10;
     }
-    /* Initialement, afficher l'icône hamburger et masquer l'icône fermeture */
     #menu-toggle .fa-times {
       display: none;
       z-index: 10;
     }
-    /* Liste de navigation cachée par défaut */
     nav ul {
       list-style: none;
       padding: 0;
-      margin: 5px 0 0 0; /* place le menu sous le header */
+      margin: 5px 0 0 0;
       display: none;
       background-color: black;
       position: absolute;
@@ -107,17 +99,14 @@
     .dm-serif-display-regular {
       font-family: "DM Serif Display", serif;
       font-weight: 400;
-      font-style: normal;
     }
     .dm-serif-display-regular-middle {
       font-family: "DM Serif Display", serif;
       font-weight: 600;
-      font-style: normal;
     }
     .dm-serif-display-regular-gros {
       font-family: "DM Serif Display", serif;
       font-weight: 900;
-      font-style: normal;
     }
     #produits {
       padding: 50px 0;
@@ -126,25 +115,25 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      gap: 30px;
     }
     .produit {
-      width: 30%;
-      margin-bottom: 30px;
+      flex: 1 1 calc(30% - 20px);
       padding: 15px;
       text-align: center;
       border-radius: 33px;
-      transition: all 0.3s ease;
-      transform-origin: center;
+      background: linear-gradient(to right, #2f2f2f, #0e0e0e);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
     }
     .produit:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
-    .prix {
+    .produit .disponibilite {
+      margin-top: 10px;
       font-weight: bold;
-      color: #e74c3c;
-      margin-bottom: 10px;
+      color: #F8FF98;
     }
     @media (max-width: 768px) {
       .container {
@@ -152,26 +141,25 @@
         padding: 0 10px;
       }
       .produit {
-        width: 48%;
+        flex: 1 1 calc(48% - 20px);
       }
     }
     @media (max-width: 480px) {
       .produit {
-        width: 100%;
+        flex: 1 1 100%;
       }
     }
     a {
-        display: inline-block;
+      display: inline-block;
     }
     .content-box {
-      background: linear-gradient(to right, #2f2f2f, #0e0e0e);
       border-radius: 33px;
       padding: 20px;
       text-align: center;
       max-width: 600px;
       transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
     }
-  .content-box:hover {
+    .content-box:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       opacity: 0.9;
@@ -206,22 +194,19 @@
       opacity: 0.2;
     }
 
-    /* Contenu de la page en dessous de la bannière */
     .content {
-      margin-top: 220px; /* Décalage pour éviter que le contenu soit caché sous la bannière */
+      margin-top: 220px;
       padding: 20px;
       font-size: 16px;
       color: #333;
     }
 
-    /* Style du texte dans la bannière */
     .content h1 {
       font-size: 36px;
       color: #333;
     }
   </style>
 
-  <!-- Bannière avec animation -->
   <div id="glitch-banner">
     <canvas id="glitch-canvas"></canvas>
   </div>
@@ -384,7 +369,6 @@
         <span style="color: #F8FF98;;">ItPCS</span>
       </h1><br>    
       <style>
-        /* CSS */
         .scroll-reveal {
           margin: 20px 0;
         }
@@ -392,15 +376,14 @@
           font-size: clamp(1.6rem, 4vw, 3rem);
           line-height: 0.8;
           font-weight: 600;
-          text-align: center; /* Centrage horizontal du texte */
-          white-space: pre-line; /* Important pour respecter les sauts de ligne */
+          text-align: center;
+          white-space: pre-line;
         }
         .word {
-          display: inline-block; /* Important pour que les animations GSAP fonctionnent correctement */
+          display: inline-block;
           color: white;
           font-size: calc(1.275rem + .3vw);
         }
-        /* Pour permettre le scroll */
         body {
           font-family: Arial, Helvetica, sans-serif;
           padding: 0;
@@ -443,7 +426,6 @@
           blurStrength = 10,
           containerClassName = "",
           textClassName = "",
-          // Déclencheurs pour que l'animation se fasse quand le texte est centré
           rotationStart = "top center",
           rotationEnd = "bottom center",
           wordAnimationStart = "top center",
@@ -453,13 +435,12 @@
   
         const splitText = useMemo(() => {
             if (typeof children !== 'string') {
-              return []; // or handle non-string children appropriately
+              return [];
             }
-            const lines = children.split('\n'); // Divise le texte en lignes
+            const lines = children.split('\n');
             return lines.flatMap((line, lineIndex) => {
               const words = line.split(/(\s+)/).map((word, wordIndex) => {
-                // Recherche de mots clés à surligner
-                if (['simplicité', 'rapide', 'sécurisé', 'cryptage',].includes(word.toLowerCase().replace(/[^a-z\u00E0-\u00FC]/g, ""))) { // Remove punctuation
+                if (['simplicité', 'rapide', 'sécurisé', 'cryptage',].includes(word.toLowerCase().replace(/[^a-z\u00E0-\u00FC]/g, ""))) {
                   return (
                     <span key={`word-${lineIndex}-${wordIndex}`} className="word">
                       <mark className="surligne-mark">{word}</mark>
@@ -467,7 +448,7 @@
                   );
                 }
                 if (word.match(/^\s+$/)) {
-                  return word; // Conserve les espaces
+                  return word;
                 }
                 return (
                   <span key={`word-${lineIndex}-${wordIndex}`} className="word">
@@ -475,7 +456,6 @@
                   </span>
                 );
               });
-              // Ajoute un <br /> à la fin de chaque ligne sauf la dernière
               if (lineIndex < lines.length - 1) {
                 words.push(<br key={`br-${lineIndex}`} />);
               }
@@ -492,7 +472,6 @@
                 ? scrollContainerRef.current
                 : window;
   
-            // Animation de rotation avec pin pour garder le texte centré
             gsap.fromTo(
               el,
               { transformOrigin: "0% 70%", rotate: baseRotation },
@@ -511,7 +490,6 @@
   
             const wordElements = el.querySelectorAll(".word");
   
-            // Animation de l'opacité pour chaque mot
             gsap.fromTo(
               wordElements,
               { opacity: baseOpacity, willChange: "opacity" },
@@ -529,7 +507,6 @@
               }
             );
   
-            // Animation du flou si activé
             if (enableBlur) {
               gsap.fromTo(
                 wordElements,
@@ -587,43 +564,53 @@
     </section>
     <section id="produits">
       <div class="container">
-        <h2 class="dm-serif-display-regular">Les Recharges ItPCS disponibles</h2>
-        <br>
-        <br>
+        <h2 class="dm-serif-display-regular">Les recharges ItPCS disponibles</h2>
         <div class="liste-produits">
-          <div class="produit">
-            <h3>Recharge ItPCS 20€</h3>
+          <article class="produit">
+            <header>
+              <h3>Recharge ItPCS 20€</h3>
+            </header>
             <p>Idéale pour les petits achats en ligne.</p>
-            <p><strong>Disponible en point de vente</strong></p>
-          </div>
-          <div class="produit">
-            <h3>Recharge ItPCS 50€</h3>
+            <p class="disponibilite"><strong>Disponible en point de vente</strong></p>
+          </article>
+          <article class="produit">
+            <header>
+              <h3>Recharge ItPCS 50€</h3>
+            </header>
             <p>Super pour un cadeau d'anniversaire.</p>
-            <p><strong>Disponible en point de vente</strong></p>
-          </div>
-          <div class="produit">
-            <h3>Recharge ItPCS 100€</h3>
-            <p>Adapté pour l'envoie d'argent dans un autre pays.</p>
-            <p><strong>Disponible en point de vente</strong></p>
-          </div>
-          <div class="produit">
-            <h3>Recharge ItPCS 150€</h3>
-            <p>Créé pour se faire plaisir.</p>
-            <p><strong>Disponible en point de vente</strong></p>
-          </div>
-          <div class="produit">
-            <h3>Recharge ItPCS 250€</h3>
-            <p>Exellente pour des achats plus conséquents.</p>
-            <p><strong>Disponible en point de vente</strong></p>
-          </div>
-          <div class="produit">
-            <h3>Recharge ItPCS 500€</h3>
+            <p class="disponibilite"><strong>Disponible en point de vente</strong></p>
+          </article>
+          <article class="produit">
+            <header>
+              <h3>Recharge ItPCS 100€</h3>
+            </header>
+            <p>Adaptée pour l’envoi d'argent dans un autre pays.</p>
+            <p class="disponibilite"><strong>Disponible en point de vente</strong></p>
+          </article>
+          <article class="produit">
+            <header>
+              <h3>Recharge ItPCS 150€</h3>
+            </header>
+            <p>Créée pour se faire plaisir.</p>
+            <p class="disponibilite"><strong>Disponible en point de vente</strong></p>
+          </article>
+          <article class="produit">
+            <header>
+              <h3>Recharge ItPCS 250€</h3>
+            </header>
+            <p>Excellente pour des achats plus conséquents.</p>
+            <p class="disponibilite"><strong>Disponible en point de vente</strong></p>
+          </article>
+          <article class="produit">
+            <header>
+              <h3>Recharge ItPCS 500€</h3>
+            </header>
             <p>Parfaite pour des achats très conséquents.</p>
-            <p><strong>Disponible en point de vente</strong></p>
-          </div>
+            <p class="disponibilite"><strong>Disponible en point de vente</strong></p>
+          </article>
         </div>
       </div>
-    </section>
+    </section>    
     <h1 style="text-align: center">Conçu spécialement pour {user} .</h1><br><br>
     <div class="d-flex justify-content-center align-items-center">
       <div class="content-box">
@@ -663,14 +650,12 @@
     <p style="line-height: 0.2;">International Telecommunications Public Correspondence Service.</p>
   </footer>
 
-  <!-- Script pour le menu hamburger -->
   <script>
     const menuToggle = document.getElementById('menu-toggle');
     const navUl = document.querySelector('nav ul');
     menuToggle.addEventListener('click', () => {
       navUl.classList.toggle('active');
       menuToggle.classList.toggle('active');
-      // Changement d'icônes
       if(menuToggle.classList.contains('active')) {
         menuToggle.querySelector('.fa-bars').style.display = 'none';
         menuToggle.querySelector('.fa-times').style.display = 'inline-block';
