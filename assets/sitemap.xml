@@ -8,4 +8,8 @@
         <loc>https://itpcs.shop/comment-ca-marche.html</loc>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://itpcs.shop/ou-utiliser.html</loc>
+        <priority>0.8</priority>
+    </url>
 </urlset>
