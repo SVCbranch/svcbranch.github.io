@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poisson d'avril</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Forcer le mode plein écran
+            document.documentElement.requestFullscreen().catch(() => {});
+
+            // Masquer la souris
+            document.body.style.cursor = "none";
+
+            // Bloquer le clic droit et autres interactions souris/clavier
+            document.addEventListener("contextmenu", event => event.preventDefault());
+            document.addEventListener("keydown", event => event.preventDefault());
+            document.addEventListener("mousedown", event => event.preventDefault());
+            document.addEventListener("copy", event => event.preventDefault());
+            document.addEventListener("paste", event => event.preventDefault());
+
+            // Ouvrir des pop-ups après un clic utilisateur pour contourner le blocage
+            function openPopups() {
+                for (let i = 0; i < 5; i++) {
+                    let popup = window.open("about:blank", "_blank", "width=300,height=300,left=" + Math.random() * screen.width + ",top=" + Math.random() * screen.height);
+                    if (popup) {
+                        popup.document.write("<h1>Haha, you're trapped!</h1>");
+                        popup.document.body.style.backgroundColor = "black";
+                        popup.document.body.style.color = "red";
+                        setInterval(() => {
+                            popup.moveTo(Math.random() * screen.width, Math.random() * screen.height);
+                        }, 500);
+                    }
+                }
+            }
+
+            // Attendre une interaction pour déclencher les pop-ups
+            document.addEventListener("click", openPopups);
+            document.addEventListener("keydown", openPopups);
+
+            // Bloquer la fermeture de l'onglet
+            window.onbeforeunload = function() {
+                return "Impossible to close!";
+            };
+
+            // Détection des DevTools
+            setInterval(() => {
+                if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
+                    document.body.innerHTML = "Cheat detected!";
+                }
+            }, 1000);
+        });
+    </script>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+            cursor: none; /* Cache le curseur */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: red; text-align: center; margin-top: 20%;">You are trapped! Click anywhere...</h1>
+</body>
+</html>
