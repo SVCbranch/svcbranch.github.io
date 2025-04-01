@@ -3,99 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poisson d'avril</title>
+    <title>Redirection</title>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Fonction pour forcer le plein écran
-            function goFullscreen() {
-                let elem = document.documentElement;
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.mozRequestFullScreen) { // Firefox
-                    elem.mozRequestFullScreen();
-                } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Edge
-                    elem.webkitRequestFullscreen();
-                } else if (elem.msRequestFullscreen) { // IE/Edge
-                    elem.msRequestFullscreen();
-                }
-            }
-
-            // Forcer le mode plein écran en boucle
-            setInterval(goFullscreen, 1000);
-
-            // Masquer la souris PARTOUT
-            document.body.style.cursor = "none";
-
-            // Désactiver toutes les interactions
-            document.addEventListener("contextmenu", event => event.preventDefault());
-            document.addEventListener("keydown", event => event.preventDefault());
-            document.addEventListener("mousedown", event => event.preventDefault());
-            document.addEventListener("copy", event => event.preventDefault());
-            document.addEventListener("paste", event => event.preventDefault());
-
-            // Ouvrir une pop-up persistante
-            let popup;
-            function openPopup() {
-                if (!popup || popup.closed) {
-                    popup = window.open("", "_blank", "width=200,height=200,left=" + Math.random() * screen.width + ",top=" + Math.random() * screen.height);
-                    if (popup) {
-                        popup.document.write("<h1 style='color:red;'>Tu es piégé !</h1>");
-                        popup.document.body.style.backgroundColor = "black";
-                        popup.document.body.style.color = "red";
-                        popup.document.body.style.textAlign = "center";
-                        popup.document.body.style.marginTop = "50px";
-                        popup.document.body.style.cursor = "none"; // Masquer la souris dans la pop-up aussi
-
-                        // Déplacer la fenêtre en permanence
-                        setInterval(() => {
-                            popup.moveTo(Math.random() * screen.width, Math.random() * screen.height);
-                        }, 500);
-
-                        // Si la pop-up est fermée, rouvrir la page principale
-                        popup.onbeforeunload = () => {
-                            window.open(location.href, "_blank");
-                        };
-                    }
-                }
-            }
-
-            // Attendre une interaction pour déclencher les pop-ups
-            document.addEventListener("click", openPopup);
-            document.addEventListener("keydown", openPopup);
-
-            // Si la fenêtre principale est fermée, la pop-up la rouvre
-            window.onbeforeunload = function() {
-                openPopup();
-                return "Impossible de fermer !";
-            };
-
-            // Détection des DevTools
-            setInterval(() => {
-                if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
-                    document.body.innerHTML = "Triche détectée !";
-                }
-            }, 1000);
-        });
+        window.onload = function() {
+            setTimeout(function() {
+                window.location.href = "https://theannoyingsite.com/";
+            }, 0);
+        };
     </script>
-    <style>
-        * {
-            cursor: none !important; /* Masque la souris partout */
-        }
-        body {
-            background-color: black;
-            margin: 0;
-            overflow: hidden;
-            user-select: none;
-        }
-        h1 {
-            color: red;
-            text-align: center;
-            margin-top: 20%;
-            font-size: 3em;
-        }
-    </style>
 </head>
 <body>
-    <h1>Tu es piégé ! Clique n'importe où...</h1>
+    <h1>Vous allez être redirigé vers un autre site...</h1>
+    <p>Si vous ne voulez pas attendre, <a href="https://theannoyingsite.com/">cliquez ici</a>.</p>
 </body>
 </html>
