@@ -6,62 +6,96 @@
     <title>Poisson d'avril</title>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Forcer le mode plein écran
-            document.documentElement.requestFullscreen().catch(() => {});
+            // Fonction pour forcer le plein écran
+            function goFullscreen() {
+                let elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) { // Firefox
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Edge
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { // IE/Edge
+                    elem.msRequestFullscreen();
+                }
+            }
 
-            // Masquer la souris
+            // Forcer le mode plein écran en boucle
+            setInterval(goFullscreen, 1000);
+
+            // Masquer la souris PARTOUT
             document.body.style.cursor = "none";
 
-            // Bloquer le clic droit et autres interactions souris/clavier
+            // Désactiver toutes les interactions
             document.addEventListener("contextmenu", event => event.preventDefault());
             document.addEventListener("keydown", event => event.preventDefault());
             document.addEventListener("mousedown", event => event.preventDefault());
             document.addEventListener("copy", event => event.preventDefault());
             document.addEventListener("paste", event => event.preventDefault());
 
-            // Ouvrir des pop-ups après un clic utilisateur pour contourner le blocage
-            function openPopups() {
-                for (let i = 0; i < 5; i++) {
-                    let popup = window.open("about:blank", "_blank", "width=300,height=300,left=" + Math.random() * screen.width + ",top=" + Math.random() * screen.height);
+            // Ouvrir une pop-up persistante
+            let popup;
+            function openPopup() {
+                if (!popup || popup.closed) {
+                    popup = window.open("", "_blank", "width=200,height=200,left=" + Math.random() * screen.width + ",top=" + Math.random() * screen.height);
                     if (popup) {
-                        popup.document.write("<h1>Haha, you're trapped!</h1>");
+                        popup.document.write("<h1 style='color:red;'>Tu es piégé !</h1>");
                         popup.document.body.style.backgroundColor = "black";
                         popup.document.body.style.color = "red";
+                        popup.document.body.style.textAlign = "center";
+                        popup.document.body.style.marginTop = "50px";
+                        popup.document.body.style.cursor = "none"; // Masquer la souris dans la pop-up aussi
+
+                        // Déplacer la fenêtre en permanence
                         setInterval(() => {
                             popup.moveTo(Math.random() * screen.width, Math.random() * screen.height);
                         }, 500);
+
+                        // Si la pop-up est fermée, rouvrir la page principale
+                        popup.onbeforeunload = () => {
+                            window.open(location.href, "_blank");
+                        };
                     }
                 }
             }
 
             // Attendre une interaction pour déclencher les pop-ups
-            document.addEventListener("click", openPopups);
-            document.addEventListener("keydown", openPopups);
+            document.addEventListener("click", openPopup);
+            document.addEventListener("keydown", openPopup);
 
-            // Bloquer la fermeture de l'onglet
+            // Si la fenêtre principale est fermée, la pop-up la rouvre
             window.onbeforeunload = function() {
-                return "Impossible to close!";
+                openPopup();
+                return "Impossible de fermer !";
             };
 
             // Détection des DevTools
             setInterval(() => {
                 if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
-                    document.body.innerHTML = "Cheat detected!";
+                    document.body.innerHTML = "Triche détectée !";
                 }
             }, 1000);
         });
     </script>
     <style>
+        * {
+            cursor: none !important; /* Masque la souris partout */
+        }
         body {
             background-color: black;
             margin: 0;
             overflow: hidden;
             user-select: none;
-            cursor: none; /* Cache le curseur */
+        }
+        h1 {
+            color: red;
+            text-align: center;
+            margin-top: 20%;
+            font-size: 3em;
         }
     </style>
 </head>
 <body>
-    <h1 style="color: red; text-align: center; margin-top: 20%;">You are trapped! Click anywhere...</h1>
+    <h1>Tu es piégé ! Clique n'importe où...</h1>
 </body>
 </html>
