@@ -2,7 +2,7 @@
   "name": "ItPCS",
   "short_name": "ItPCS",
   "start_url": "/",
-  "display": "standalone",
+  "display": "fullscreen",
   "icons": [
     {
       "src": "assets/favicon.png",
