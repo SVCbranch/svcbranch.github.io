@@ -1,14 +1,12 @@
 const CACHE_NAME = 'cacheapp';
 const URLS_TO_CACHE = [
-    '/',
     '/index.html',
-    '/style.css',
+    '/comment-ca-marche.html',
+    '/ou-utiliser.html',
     '/app.js',
-    '/icon-192x192.png',
-    '/icon-512x512.png'
+    '/assets/favicon.png'
 ];
 
-// Installer le service worker et mettre en cache les ressources
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
