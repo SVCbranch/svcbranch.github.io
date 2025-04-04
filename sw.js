@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cacheapp';
+const CACHE_NAME = 'cacheapp-v2';
 const URLS_TO_CACHE = [
     '/index.html',
     '/comment-ca-marche.html',
@@ -6,7 +6,6 @@ const URLS_TO_CACHE = [
     '/assets/app.js',
     '/assets/dependencies.js',
     '/assets/favicon.png',
-
 ];
 
 self.addEventListener('install', event => {
@@ -16,17 +15,22 @@ self.addEventListener('install', event => {
             return cache.addAll(URLS_TO_CACHE);
         })
     );
+    self.skipWaiting();
 });
 
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(cachedResponse => {
-            return cachedResponse || fetch(event.request).then(networkResponse => {
-                return caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, networkResponse.clone());
-                    return networkResponse;
+            if (!event.request.url.includes('/api/')) {
+                return cachedResponse || fetch(event.request).then(networkResponse => {
+                    return caches.open(CACHE_NAME).then(cache => {
+                        cache.put(event.request, networkResponse.clone());
+                        return networkResponse;
+                    });
                 });
-            });
+            } else {
+                return fetch(event.request);
+            }
         })
     );
 });
@@ -44,4 +48,5 @@ self.addEventListener('activate', event => {
             );
         })
     );
+    self.clients.claim();
 });

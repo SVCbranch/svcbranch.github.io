@@ -27,52 +27,6 @@
       display: block;
       margin: 0 auto;
     }
-    /* Bouton hamburger */
-    #menu-toggle {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: white;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-    }
-    /* Masquer l'icône fermeture par défaut */
-    #menu-toggle .fa-times {
-      display: none;
-    }
-    /* Masquer la liste de navigation par défaut et la positionner en dropdown */
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 5px 0 0 0; /* place le menu sous le header */
-      display: none;
-      background-color: black;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      width: 200px;
-      border: 1px solid #444;
-      border-radius: 5px;
-    }
-    /* Afficher le menu quand il est actif */
-    nav ul.active {
-      display: block;
-      border-radius: 33px;
-      border-color: #FFD700;
-      box-shadow: 0 0 25px #FFD700;
-    }
-    nav ul li {
-      margin: 10px 0;
-      text-align: center;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px;
-    }
     .container {
       width: 80%;
       margin: auto;
@@ -88,17 +42,6 @@
     <a href="index.html">
         <img src="assets/itpcs_white.png" alt="Logo ItPCS" width="150">
     </a>
-    <nav>
-      <button id="menu-toggle" aria-label="Ouvrir/fermer le menu">
-        <i class="fas fa-bars"></i>
-        <i class="fas fa-times"></i>
-      </button>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="comment-ca-marche.html">Comment ça marche ?</a></li>
-        <li><a href="ou-utiliser.html">Où utiliser ?</a></li>
-      </ul>
-    </nav>
   </header>
 
   <main class="container">

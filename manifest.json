@@ -3,6 +3,10 @@
   "short_name": "ItPCS",
   "start_url": "/",
   "display": "fullscreen",
+  "scope": "/",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "apple-touch-icon": "assets/favicon.png",
   "icons": [
     {
       "src": "assets/favicon.png",
