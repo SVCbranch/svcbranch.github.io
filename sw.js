@@ -1,10 +1,12 @@
 const CACHE_NAME = 'cacheapp';
 const URLS_TO_CACHE = [
-    '/',
     '/index.html',
     '/comment-ca-marche.html',
+    '/ou-utiliser.html',
     '/assets/app.js',
-    '/assets/favicon.png'
+    '/assets/dependencies.js',
+    '/assets/favicon.png',
+
 ];
 
 self.addEventListener('install', event => {
