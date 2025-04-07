@@ -297,10 +297,12 @@
           color: rgba(255, 255, 255, 0.459);
         }
 
-    .outer-wrapper {
-      position: relative;
-      height: 150px;
-      overflow: hidden;
+   .outer-wrapper {
+     position: relative;
+     height: 150px;
+     overflow: hidden;
+     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
 
     .scroll-wrapper {
