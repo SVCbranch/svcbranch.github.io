@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0e0e0e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="msapplication-navbutton-color" content="#0e0e0e">
     <meta name="description" content="Payez en toute sécurité avec ItPCS - Découvrez la simplicité d'achat de vos recharges ItPCS en points de vente.">
     <meta name="keywords" content="PCS, ItPCS, billets, coupons, recharges, MasterCard, paiements sécurisés">
     <title>ItPCS - Paiement Sécurisé</title>
@@ -208,29 +204,24 @@
           mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
           -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
-
         .scroll-wrapper {
           position: absolute;
           width: 100vw;
           top: 0px;
           left: 0px;
         }
-
         .scroll-line {
           position: absolute;
           white-space: nowrap;
           display: flex;
           width: 200vw;
         }
-
         .line1 {
           top: 40px;
         }
-
         .line2 {
           top: 120px;
         }
-
         .scroll-line h2 {
           font-size: 75px;
           font-weight: 700;
@@ -238,21 +229,17 @@
           margin: 0;
           animation: scroll 30s linear infinite;
         }
-
         .line2 h2 {
           animation-delay: -2s;
         }
-
         @keyframes scroll {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-
         @keyframes scroll-offset {
           0%   { transform: translateX(-25%); }
           100% { transform: translateX(-75%); }
         }
-
         .glow-buttoncontent {
           position: relative;
           display: flex;
@@ -260,7 +247,6 @@
           justify-content: center;
           top: 15px;
         }
-
         .glow-button {
           position: relative;
           display: flex;
@@ -279,11 +265,9 @@
           transition: transform 0.3s ease;
           height: 60px;
         }
-
         .glow-button:hover {
           transform: scale(1.05);
         }
-
         .glow-button .content10 {
           position: relative;
           z-index: 2;
@@ -291,28 +275,48 @@
           align-items: center;
           gap: 10px;
         }
-
         .arrow {
           transition: transform 0.3s ease;
         }
-
         .discoverBtntxt {
           color: white;
         }
-
         .content10 {
           padding: 20px;
         }
-
         .clicked .arrow {
           animation: arrowDisappearReenter 0.5s forwards;
         }
-
         @keyframes arrowDisappearReenter {
           0%   { opacity: 1; transform: translateY(0); }
           25%  { opacity: 0; transform: translateY(30px); }
           75%  { opacity: 0; transform: translateY(-30px); }
           100% { opacity: 1; transform: translateY(0); }
+        }
+        .scroll-reveal {
+          margin: 20px 0;
+        }
+        .scroll-reveal-text {
+          font-size: clamp(1.6rem, 4vw, 3rem);
+          line-height: 0.8;
+          font-weight: 600;
+          text-align: center;
+          white-space: pre-line;
+        }
+        .word {
+          display: inline-block;
+          color: white;
+          font-size: calc(1.275rem + .3vw);
+        }
+        .spacer {
+          height: 10vh;
+          position: relative;
+        }
+        @media (max-width: 768px) {
+          .spacer {
+            height: 0vh;
+            position: relative;
+          }
         }
     </style>
 </head>
@@ -343,14 +347,12 @@
         pointer-events: none;
         opacity: 0.2;
       }
-
       .content {
         margin-top: 220px;
         padding: 20px;
         font-size: 16px;
         color: #333;
       }
-
       .content h1 {
         font-size: 36px;
         color: #333;
@@ -518,203 +520,22 @@
           Payez en toute <mark class="surligne-mark">sécurité</mark> avec
           <span style="color: #F8FF98;;">ItPCS</span>
         </h1><br>
-        <style>
-          .scroll-reveal {
-            margin: 20px 0;
-          }
-          .scroll-reveal-text {
-            font-size: clamp(1.6rem, 4vw, 3rem);
-            line-height: 0.8;
-            font-weight: 600;
-            text-align: center;
-            white-space: pre-line;
-          }
-          .word {
-            display: inline-block;
-            color: white;
-            font-size: calc(1.275rem + .3vw);
-          }
-          body {
-            font-family: Arial, Helvetica, sans-serif;
-            padding: 0;
-            margin: 0;
-            background-color: #0e0e0e;
-            overflow-x: hidden;
-          }
-          .spacer {
-            height: 10vh;
-            position: relative;
-          }
-          @media (max-width: 768px) {
-            .spacer {
-              height: 0vh;
-              position: relative;
-            }
-          }
-        </style>
-      </head>
-      <main>
-        <div class="spacer"></div>
-        <div id="root"></div>
-
-        <script type="text/babel">
-          const { useEffect, useRef, useMemo } = React;
-          gsap.registerPlugin(ScrollTrigger);
-
-          const ScrollReveal = ({
-            children,
-            scrollContainerRef,
-            enableBlur = true,
-            baseOpacity = 0.1,
-            baseRotation = 0,
-            blurStrength = 10,
-            containerClassName = "",
-            textClassName = "",
-            rotationStart = "top center",
-            rotationEnd = "bottom center",
-            wordAnimationStart = "top center",
-            wordAnimationEnd = "center center"
-          }) => {
-            const containerRef = useRef(null);
-
-          const splitText = useMemo(() => {
-              if (typeof children !== 'string') {
-                return [];
-              }
-              const lines = children.split('\n');
-              return lines.flatMap((line, lineIndex) => {
-                const words = line.split(/(\s+)/).map((word, wordIndex) => {
-                  if (['simplicité', 'rapide', 'sécurisé', 'cryptage',].includes(word.toLowerCase().replace(/[^a-z\u00E0-\u00FC]/g, ""))) {
-                    return (
-                      <span key={`word-${lineIndex}-${wordIndex}`} className="word">
-                        <mark className="surligne-mark">{word}</mark>
-                      </span>
-                    );
-                  }
-                  if (word.match(/^\s+$/)) {
-                    return word;
-                  }
-                  return (
-                    <span key={`word-${lineIndex}-${wordIndex}`} className="word">
-                      {word}
-                    </span>
-                  );
-                });
-                if (lineIndex < lines.length - 1) {
-                  words.push(<br key={`br-${lineIndex}`} />);
-                }
-                return words;
-              });
-            }, [children]);
-
-            useEffect(() => {
-              const el = containerRef.current;
-              if (!el) return;
-
-              const scroller =
-                scrollContainerRef && scrollContainerRef.current
-                  ? scrollContainerRef.current
-                  : window;
-
-              gsap.fromTo(
-                el,
-                { transformOrigin: "0% 70%", rotate: baseRotation },
-                {
-                  ease: "none",
-                  rotate: 0,
-                  scrollTrigger: {
-                    trigger: el,
-                    scroller,
-                    start: rotationStart,
-                    end: rotationEnd,
-                    scrub: true,
-                  },
-                }
-              );
-
-              const wordElements = el.querySelectorAll(".word");
-
-              gsap.fromTo(
-                wordElements,
-                { opacity: baseOpacity, willChange: "opacity" },
-                {
-                  ease: "none",
-                  opacity: 1,
-                  stagger: 0.05,
-                  scrollTrigger: {
-                    trigger: el,
-                    scroller,
-                    start: wordAnimationStart,
-                    end: wordAnimationEnd,
-                    scrub: true,
-                  },
-                }
-              );
-
-              if (enableBlur) {
-                gsap.fromTo(
-                  wordElements,
-                  { filter: `blur(${blurStrength}px)` },
-                  {
-                    ease: "none",
-                    filter: "blur(0px)",
-                    stagger: 0.05,
-                    scrollTrigger: {
-                      trigger: el,
-                      scroller,
-                      start: wordAnimationStart,
-                      end: wordAnimationEnd,
-                      scrub: true,
-                    },
-                  }
-                );
-              }
-
-              return () => {
-                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-              };
-            }, [
-              scrollContainerRef,
-              enableBlur,
-              baseRotation,
-              baseOpacity,
-              rotationStart,
-              rotationEnd,
-              wordAnimationStart,
-              wordAnimationEnd,
-              blurStrength
-            ]);
-
-            return (
-              <h2 ref={containerRef} className={`scroll-reveal ${containerClassName}`}>
-                <p className={`scroll-reveal-text ${textClassName}`}>{splitText}</p>
-              </h2>
-            );
-          };
-
-          const App = () => {
-            return (
-              <div>
-                <ScrollReveal>
-                  {`Découvrez la simplicité d'achat de vos recharges ItPCS en points de vente.\n\nProfitez d'un paiement rapide et sécurisé,\nsans avoir à partager vos informations bancaires.\n\nGrâce à notre technologie de cryptage avancé,\nvos transactions sont entièrement protégées.`}
-                </ScrollReveal>
-              </div>
-            );
-          };
-
-          ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-        </script>
-      </main>
+        
+        <main>
+            <div class="spacer"></div>
+            <div id="scroll-reveal-root"></div>
+        </main>
       </section>
+
       <div class="glow-buttoncontent">
-      <button class="glow-button" id="discoverBtn" onclick="window.location.href='#produits'">
-        <span class="content10">
-          <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-          <span class="discoverBtntxt">Découvrir</span>
-        </span>
-      </button>
+          <button class="glow-button" id="discoverBtn" onclick="window.location.href='#produits'">
+            <span class="content10">
+              <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              <span class="discoverBtntxt">Découvrir</span>
+            </span>
+          </button>
       </div>
       <script>
         const button = document.getElementById('discoverBtn');
@@ -724,6 +545,7 @@
           button.classList.add('clicked');
         });
       </script>
+
       <section id="produits">
           <div class="container">
               <h2 class="dm-serif-display-regular-gros" style="font-size: 35px;">Les Recharges ItPCS disponibles</h2>
@@ -796,34 +618,16 @@
     <h2 class="recrutement" style="color: #F8FF98; text-align: center; font-weight: bolder; font-size: 35px; font-family: 'DM Serif Display', serif;">Qu’attendez vous ?<br>Retrouvez nous à vos points de vente.</h2>
     <br>
     <div class="container py-5">
-          <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner text-center">
-                  <div class="carousel-item active">
-                      <p>Un service exceptionnel.</p>
-                      <p><b>- Mark John -</b></p>
-                  </div>
-                  <div class="carousel-item">
-                      <p>Une expérience d'achat en ligne facile et rapide.</p>
-                      <p><b>- Jaison Warner -</b></p>
-                  </div>
-                  <div class="carousel-item">
-                      <p>Achat de billets très simple! Je suis très satisfait de mon expérience.</p>
-                      <p><b>- Tony Antonio -</b></p>
-                  </div>
-                  <div class="carousel-item">
-                      <p>J'adore!</p>
-                      <p><b>- John Fortnite -</b></p>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <div id="testimonial-root"></div>
+    </div>
     </main>
     <footer>
-        <p>&copy; 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
+        <p>© 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
         <p style="line-height: 0; font-size: 7px;">Ceci est un concept, ItPCS est un compagnie fictive.</p>
         <p style="line-height: 0; font-size: 7px;">Nous ne sommes pas affiliés à Mastercard ou à la</p>
         <p style="line-height: 0; font-size: 7px;">International Telecommunications Public Correspondence Service.</p>
     </footer>
+
     <script>
       const menuToggle = document.getElementById('menu-toggle');
       const navUl = document.querySelector('nav ul');
@@ -839,6 +643,13 @@
         }
       });
     </script>
-    <script src="assets/dependencies.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel" src="assets/react-components.js"></script>
+    <script src="assets/app.js"></script>
 </body>
 </html>
