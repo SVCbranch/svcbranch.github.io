@@ -1,656 +1,736 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0e0e0e">
-    <meta name="description" content="Payez en toute sécurité avec ItPCS - Découvrez la simplicité d'achat de vos recharges ItPCS en points de vente.">
-    <meta name="keywords" content="PCS, ItPCS, billets, coupons, recharges, MasterCard, paiements sécurisés">
-    <title>ItPCS - Paiement Sécurisé</title>
-    <link rel="icon" href="./assets/favicon.png" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="ItPCS">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #0e0e0e;
-            color: white;
-            font-family: sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header, footer {
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-        header img {
-            display: block;
-            margin: 0 auto;
-        }
-        #menu-toggle {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            z-index: 10;
-        }
-        #menu-toggle .fa-times {
-            display: none;
-            z-index: 10;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 5px 0 0 0;
-            display: none;
-            background-color: black;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            width: 200px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            z-index: 10;
-        }
-        nav ul.active {
-            display: block;
-            border-radius: 33px;
-            border-color: #F8FF98;
-            box-shadow: 0 0 25px #F8FF98;
-            z-index: 10;
-        }
-        nav ul li {
-            margin: 10px 0;
-            text-align: center;
-            z-index: 10;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            z-index: 10;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-        .hero-section {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 50px 0;
-        }
-        .hero-section h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        .surligne-mark {
-            background-color: #F8FF98;
-            color: black;
-            border-radius: 10px;
-            padding: 1px 6px;
-        }
-        .dm-serif-display-regular {
-            font-family: "DM Serif Display", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-        .dm-serif-display-regular-middle {
-          font-family: "DM Serif Display", serif;
-          font-weight: 600;
-          font-style: normal;
-        }
-        .dm-serif-display-regular-gros {
-            font-family: "DM Serif Display", serif;
-            font-weight: 900;
-            font-style: normal;
-        }
-        #produits {
-            padding: 50px 0;
-        }
-        .liste-produits {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .produit {
-            width: 30%;
-            margin-bottom: 30px;
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            transform-origin: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .produit:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
-        .produit img {
-            width: 100%;
-            opacity: 0.8;
-            border-radius: 33px;
-            margin-bottom: 15px;
-        }
-        .produit h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #F8FF98;
-        }
-        .produit p {
-            font-size: 0.9em;
-            color: #eee;
-            margin-bottom: 15px;
-        }
-        @media (max-width: 1000px) {
-            .container {
-                width: 90%;
-                padding: 0 10px;
-            }
-            .produit {
-                width: 38%;
-            }
-        }
-        @media (max-width: 782px) {
-            .container {
-                width: 90%;
-                padding: 0 10px;
-            }
-            .produit {
-                width: 48%;
-            }
-        }
-        @media (max-width: 480px) {
-            .produit {
-                width: 100%;
-            }
-        }
-        a {
-            display: inline-block;
-        }
-        .content-box {
-          background: linear-gradient(to right, #2f2f2f, #111111);
-          border-radius: 33px;
-          padding: 20px;
-          text-align: center;
-          max-width: 600px;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-        }
-        .content-box:hover {
-          transform: scale(1.05);
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-          opacity: 0.9;
-        }
-        .outer-wrapper {
-          position: relative;
-          height: 200px;
-          overflow: hidden;
-          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
-        .scroll-wrapper {
-          position: absolute;
-          width: 100vw;
-          top: 0px;
-          left: 0px;
-        }
-        .scroll-line {
-          position: absolute;
-          white-space: nowrap;
-          display: flex;
-          width: 200vw;
-        }
-        .line1 {
-          top: 40px;
-        }
-        .line2 {
-          top: 120px;
-        }
-        .scroll-line h2 {
-          font-size: 75px;
-          font-weight: 700;
-          display: inline-block;
-          margin: 0;
-          animation: scroll 30s linear infinite;
-        }
-        .line2 h2 {
-          animation-delay: -2s;
-        }
-        @keyframes scroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes scroll-offset {
-          0%   { transform: translateX(-25%); }
-          100% { transform: translateX(-75%); }
-        }
-        .glow-buttoncontent {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          top: 15px;
-        }
-        .glow-button {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          padding: 14px 28px;
-          font-size: 18px;
-          font-weight: 600;
-          background: linear-gradient(to right, #2f2f2f, #111111);
-          color: white;
-          border: none;
-          border-radius: 20px;
-          cursor: pointer;
-          overflow: hidden;
-          transition: transform 0.3s ease;
-          height: 60px;
-        }
-        .glow-button:hover {
-          transform: scale(1.05);
-        }
-        .glow-button .content10 {
-          position: relative;
-          z-index: 2;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .arrow {
-          transition: transform 0.3s ease;
-        }
-        .discoverBtntxt {
-          color: white;
-        }
-        .content10 {
-          padding: 20px;
-        }
-        .clicked .arrow {
-          animation: arrowDisappearReenter 0.5s forwards;
-        }
-        @keyframes arrowDisappearReenter {
-          0%   { opacity: 1; transform: translateY(0); }
-          25%  { opacity: 0; transform: translateY(30px); }
-          75%  { opacity: 0; transform: translateY(-30px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .scroll-reveal {
-          margin: 20px 0;
-        }
-        .scroll-reveal-text {
-          font-size: clamp(1.6rem, 4vw, 3rem);
-          line-height: 0.8;
-          font-weight: 600;
-          text-align: center;
-          white-space: pre-line;
-        }
-        .word {
-          display: inline-block;
-          color: white;
-          font-size: calc(1.275rem + .3vw);
-        }
-        .spacer {
-          height: 10vh;
-          position: relative;
-        }
-        @media (max-width: 768px) {
-          .spacer {
-            height: 0vh;
-            position: relative;
-          }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0e0e0e">
+  <meta name="description" content="Payez en toute sécurité avec ItPCS - Découvrez la simplicité d'achat de vos recharges ItPCS en points de vente.">
+  <meta name="keywords" content="PCS, ItPCS, billets, coupons, recharges, MasterCard, paiements sécurisés">
+  <title>ItPCS - Paiement Sécurisé</title>
+  <link rel="icon" href="./assets/favicon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ItPCS">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: white;
+      font-family: sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    #menu-toggle {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      z-index: 10;
+    }
+
+    #menu-toggle .fa-times {
+      display: none;
+      z-index: 10;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 5px 0 0 0;
+      display: none;
+      background-color: black;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      width: 200px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      z-index: 10;
+    }
+
+    nav ul.active {
+      display: block;
+      border-radius: 33px;
+      border-color: #F8FF98;
+      box-shadow: 0 0 25px #F8FF98;
+      z-index: 10;
+    }
+
+    nav ul li {
+      margin: 10px 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      z-index: 10;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+
+    .hero-section {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    .hero-section h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .surligne-mark {
+      background-color: #F8FF98;
+      color: black;
+      border-radius: 10px;
+      padding: 1px 6px;
+    }
+
+    .dm-serif-display-regular {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .dm-serif-display-regular-middle {
+      font-family: "DM Serif Display", serif;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .dm-serif-display-regular-gros {
+      font-family: "DM Serif Display", serif;
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    #produits {
+      padding: 50px 0;
+    }
+
+    .liste-produits {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .produit {
+      width: 30%;
+      margin-bottom: 30px;
+      padding: 15px;
+      text-align: center;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .produit:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .produit img {
+      width: 100%;
+      opacity: 0.8;
+      border-radius: 33px;
+      margin-bottom: 15px;
+    }
+
+    .produit h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #F8FF98;
+    }
+
+    .produit p {
+      font-size: 0.9em;
+      color: #eee;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 1000px) {
+      .container {
+        width: 90%;
+        padding: 0 10px;
+      }
+
+      .produit {
+        width: 38%;
+      }
+    }
+
+    @media (max-width: 782px) {
+      .container {
+        width: 90%;
+        padding: 0 10px;
+      }
+
+      .produit {
+        width: 48%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .produit {
+        width: 100%;
+      }
+    }
+
+    a {
+      display: inline-block;
+    }
+
+    .content-box {
+      background: linear-gradient(to right, #2f2f2f, #111111);
+      border-radius: 33px;
+      padding: 20px;
+      text-align: center;
+      max-width: 600px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    }
+
+    .content-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0.9;
+    }
+
+    .outer-wrapper {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .scroll-wrapper {
+      position: absolute;
+      width: 100vw;
+      top: 0px;
+      left: 0px;
+    }
+
+    .scroll-line {
+      position: absolute;
+      white-space: nowrap;
+      display: flex;
+      width: 200vw;
+    }
+
+    .line1 {
+      top: 40px;
+    }
+
+    .line2 {
+      top: 120px;
+    }
+
+    .scroll-line h2 {
+      font-size: 75px;
+      font-weight: 700;
+      display: inline-block;
+      margin: 0;
+      animation: scroll 30s linear infinite;
+    }
+
+    .line2 h2 {
+      animation-delay: -2s;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes scroll-offset {
+      0% {
+        transform: translateX(-25%);
+      }
+
+      100% {
+        transform: translateX(-75%);
+      }
+    }
+
+    .glow-buttoncontent {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 15px;
+    }
+
+    .glow-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: 600;
+      background: linear-gradient(to right, #2f2f2f, #111111);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      height: 60px;
+    }
+
+    .glow-button:hover {
+      transform: scale(1.05);
+    }
+
+    .glow-button .content10 {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .discoverBtntxt {
+      color: white;
+    }
+
+    .content10 {
+      padding: 20px;
+    }
+
+    .clicked .arrow {
+      animation: arrowDisappearReenter 0.5s forwards;
+    }
+
+    @keyframes arrowDisappearReenter {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      25% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      75% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-reveal {
+      margin: 20px 0;
+    }
+
+    .scroll-reveal-text {
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      line-height: 0.8;
+      font-weight: 600;
+      text-align: center;
+      white-space: pre-line;
+    }
+
+    .word {
+      display: inline-block;
+      color: white;
+      font-size: calc(1.275rem + .3vw);
+    }
+
+    .spacer {
+      height: 10vh;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .spacer {
+        height: 0vh;
+        position: relative;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <a href="index.html">
-            <img src="assets/itpcs_white.png" alt="Logo ItPCS" width="150">
-        </a>
-        <nav>
-            <button id="menu-toggle" aria-label="Ouvrir/fermer le menu">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-times"></i>
-            </button>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="comment-ca-marche.html">Comment ça marche ?</a></li>
-                <li><a href="ou-utiliser.html">Où utiliser ?</a></li>
-            </ul>
-        </nav>
-    </header>
-    <style>
-      #glitch-banner {
-        left: 0;
-        width: 100%;
-        height: 600px;
-        position: absolute;
-        z-index: 1;
-        pointer-events: none;
-        opacity: 0.2;
+  <header>
+    <a href="index.html">
+      <img src="assets/itpcs_white.png" alt="Logo ItPCS" width="150">
+    </a>
+    <nav>
+      <button id="menu-toggle" aria-label="Ouvrir/fermer le menu">
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
+      </button>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="comment-ca-marche.html">Comment ça marche ?</a></li>
+        <li><a href="ou-utiliser.html">Où utiliser ?</a></li>
+      </ul>
+    </nav>
+  </header>
+  <style>
+    #glitch-banner {
+      left: 0;
+      width: 100%;
+      height: 600px;
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.2;
+    }
+
+    .content {
+      margin-top: 220px;
+      padding: 20px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .content h1 {
+      font-size: 36px;
+      color: #333;
+    }
+  </style>
+
+  <div id="glitch-banner">
+    <canvas id="glitch-canvas"></canvas>
+  </div>
+
+  <script>
+    const glitchColors = ['#2b4539', '#61dca3', '#61b3dc'];
+    const glitchSpeed = 100;
+    const smooth = true;
+    const fontSize = 16;
+    const charWidth = 10;
+    const charHeight = 20;
+
+    const lettersAndSymbols = [
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '@', '#', '$', '&', '*', '(', ')', '-', '_', '+', '=', '/', '[', ']', '{', '}', ';', ':', '<', '>', ',', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+    ];
+
+    const getRandomChar = () => lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)];
+    const getRandomColor = () => glitchColors[Math.floor(Math.random() * glitchColors.length)];
+
+    let letters = [];
+    let grid = { columns: 0, rows: 0 };
+    let context = null;
+    let lastGlitchTime = Date.now();
+
+    const canvas = document.getElementById('glitch-canvas');
+    const container = document.getElementById('glitch-banner');
+
+    const hexToRgb = hex => {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    };
+
+    const interpolateColor = (start, end, factor) => {
+      return `rgb(${Math.round(start.r + (end.r - start.r) * factor)}, ${Math.round(start.g + (end.g - start.g) * factor)}, ${Math.round(start.b + (end.b - start.b) * factor)})`;
+    };
+
+    const calculateGrid = (width, height) => {
+      const columns = Math.ceil(width / charWidth);
+      const rows = Math.ceil(height / charHeight);
+      return { columns, rows };
+    };
+
+    const initializeLetters = (columns, rows) => {
+      grid = { columns, rows };
+      letters = Array.from({ length: columns * rows }, () => ({
+        char: getRandomChar(),
+        color: getRandomColor(),
+        targetColor: getRandomColor(),
+        colorProgress: 1
+      }));
+    };
+
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+
+      if (context) {
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
-      .content {
-        margin-top: 220px;
-        padding: 20px;
-        font-size: 16px;
-        color: #333;
-      }
-      .content h1 {
-        font-size: 36px;
-        color: #333;
-      }
-    </style>
 
-    <div id="glitch-banner">
-      <canvas id="glitch-canvas"></canvas>
-    </div>
+      const { columns, rows } = calculateGrid(rect.width, rect.height);
+      initializeLetters(columns, rows);
+      drawLetters();
+    };
 
-    <script>
-      const glitchColors = ['#2b4539', '#61dca3', '#61b3dc'];
-      const glitchSpeed = 100;
-      const smooth = true;
-      const fontSize = 16;
-      const charWidth = 10;
-      const charHeight = 20;
+    const drawLetters = () => {
+      if (!context || letters.length === 0) return;
+      const ctx = context;
+      const { width, height } = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, width, height);
+      ctx.font = `${fontSize}px monospace`;
+      ctx.textBaseline = 'top';
 
-      const lettersAndSymbols = [
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '@', '#', '$', '&', '*', '(', ')', '-', '_', '+', '=', '/', '[', ']', '{', '}', ';', ':', '<', '>', ',', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
-      ];
-
-      const getRandomChar = () => lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)];
-      const getRandomColor = () => glitchColors[Math.floor(Math.random() * glitchColors.length)];
-
-      let letters = [];
-      let grid = { columns: 0, rows: 0 };
-      let context = null;
-      let lastGlitchTime = Date.now();
-
-      const canvas = document.getElementById('glitch-canvas');
-      const container = document.getElementById('glitch-banner');
-
-      const hexToRgb = hex => {
-        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16)
-        } : null;
-      };
-
-      const interpolateColor = (start, end, factor) => {
-        return `rgb(${Math.round(start.r + (end.r - start.r) * factor)}, ${Math.round(start.g + (end.g - start.g) * factor)}, ${Math.round(start.b + (end.b - start.b) * factor)})`;
-      };
-
-      const calculateGrid = (width, height) => {
-        const columns = Math.ceil(width / charWidth);
-        const rows = Math.ceil(height / charHeight);
-        return { columns, rows };
-      };
-
-      const initializeLetters = (columns, rows) => {
-        grid = { columns, rows };
-        letters = Array.from({ length: columns * rows }, () => ({
-          char: getRandomChar(),
-          color: getRandomColor(),
-          targetColor: getRandomColor(),
-          colorProgress: 1
-        }));
-      };
-
-      const resizeCanvas = () => {
-        const dpr = window.devicePixelRatio || 1;
-        const rect = container.getBoundingClientRect();
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        canvas.style.width = `${rect.width}px`;
-        canvas.style.height = `${rect.height}px`;
-
-        if (context) {
-          context.setTransform(dpr, 0, 0, dpr, 0, 0);
-        }
-
-        const { columns, rows } = calculateGrid(rect.width, rect.height);
-        initializeLetters(columns, rows);
-        drawLetters();
-      };
-
-      const drawLetters = () => {
-        if (!context || letters.length === 0) return;
-        const ctx = context;
-        const { width, height } = canvas.getBoundingClientRect();
-        ctx.clearRect(0, 0, width, height);
-        ctx.font = `${fontSize}px monospace`;
-        ctx.textBaseline = 'top';
-
-        letters.forEach((letter, index) => {
-          const x = (index % grid.columns) * charWidth;
-          const y = Math.floor(index / grid.columns) * charHeight;
-          ctx.fillStyle = letter.color;
-          ctx.fillText(letter.char, x, y);
-        });
-      };
-
-      const updateLetters = () => {
-        if (letters.length === 0) return;
-
-        const updateCount = Math.max(1, Math.floor(letters.length * 0.05));
-        for (let i = 0; i < updateCount; i++) {
-          const index = Math.floor(Math.random() * letters.length);
-          letters[index].char = getRandomChar();
-          letters[index].targetColor = getRandomColor();
-
-          if (!smooth) {
-            letters[index].color = letters[index].targetColor;
-            letters[index].colorProgress = 1;
-          } else {
-            letters[index].colorProgress = 0;
-          }
-        }
-      };
-
-      const handleSmoothTransitions = () => {
-        let needsRedraw = false;
-        letters.forEach(letter => {
-          if (letter.colorProgress < 1) {
-            letter.colorProgress += 0.05;
-            if (letter.colorProgress > 1) letter.colorProgress = 1;
-
-            const startRgb = hexToRgb(letter.color);
-            const endRgb = hexToRgb(letter.targetColor);
-            if (startRgb && endRgb) {
-              letter.color = interpolateColor(startRgb, endRgb, letter.colorProgress);
-              needsRedraw = true;
-            }
-          }
-        });
-
-        if (needsRedraw) {
-          drawLetters();
-        }
-      };
-
-      const animate = () => {
-        const now = Date.now();
-        if (now - lastGlitchTime >= glitchSpeed) {
-          updateLetters();
-          drawLetters();
-          lastGlitchTime = now;
-        }
-
-        if (smooth) {
-          handleSmoothTransitions();
-        }
-
-        requestAnimationFrame(animate);
-      };
-
-      window.addEventListener('resize', () => {
-        resizeCanvas();
+      letters.forEach((letter, index) => {
+        const x = (index % grid.columns) * charWidth;
+        const y = Math.floor(index / grid.columns) * charHeight;
+        ctx.fillStyle = letter.color;
+        ctx.fillText(letter.char, x, y);
       });
+    };
 
-      document.addEventListener('DOMContentLoaded', () => {
-        context = canvas.getContext('2d');
-        resizeCanvas();
-        animate();
-      });
-    </script>
-    <main class="container">
-      <section class="hero-section">
-        <h1 class="dm-serif-display-regular-gros">
-          Payez en toute <mark class="surligne-mark">sécurité</mark> avec
-          <span style="color: #F8FF98;;">ItPCS</span>
-        </h1><br>
-        
-        <main>
-            <div class="spacer"></div>
-            <div id="scroll-reveal-root"></div>
-        </main>
-      </section>
+    const updateLetters = () => {
+      if (letters.length === 0) return;
 
-      <div class="glow-buttoncontent">
-          <button class="glow-button" id="discoverBtn" onclick="window.location.href='#produits'">
-            <span class="content10">
-              <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-              <span class="discoverBtntxt">Découvrir</span>
-            </span>
-          </button>
-      </div>
-      <script>
-        const button = document.getElementById('discoverBtn');
-        button.addEventListener('click', () => {
-          button.classList.remove('clicked');
-          void button.offsetWidth;
-          button.classList.add('clicked');
-        });
-      </script>
+      const updateCount = Math.max(1, Math.floor(letters.length * 0.05));
+      for (let i = 0; i < updateCount; i++) {
+        const index = Math.floor(Math.random() * letters.length);
+        letters[index].char = getRandomChar();
+        letters[index].targetColor = getRandomColor();
 
-      <section id="produits">
-          <div class="container">
-              <h2 class="dm-serif-display-regular-gros" style="font-size: 35px;">Les Recharges ItPCS disponibles</h2>
-              <br>
-              <br>
-              <div class="liste-produits">
-                  <div class="produit">
-                      <img src="https://placehold.co/400x300/EEE/31343C?text=20€&font=Montserrat" alt="Recharge ItPCS 20€">
-                      <h3>Recharge ItPCS 20€</h3>
-                      <p>Idéale pour les petits achats en ligne.</p>
-                  </div>
-                  <div class="produit">
-                      <img src="https://placehold.co/400x300/EEE/31343C?text=50€&font=Montserrat" alt="Recharge ItPCS 50€">
-                      <h3>Recharge ItPCS 50€</h3>
-                      <p>Super pour un cadeau d'anniversaire.</p>
-                  </div>
-                  <div class="produit">
-                      <img src="https://placehold.co/400x300/EEE/31343C?text=100€&font=Montserrat" alt="Recharge ItPCS 100€">
-                      <h3>Recharge ItPCS 100€</h3>
-                      <p>Adapté pour l'envoi d'argent dans un autre pays.</p>
-                  </div>
-                  <div class="produit">
-                      <img src="https://placehold.co/400x300/EEE/31343C?text=150€&font=Montserrat" alt="Recharge ItPCS 150€">
-                      <h3>Recharge ItPCS 150€</h3>
-                      <p>Créé pour se faire plaisir.</p>
-                  </div>
-                  <div class="produit">
-                      <img src="https://placehold.co/400x300/EEE/31343C?text=250€&font=Montserrat" alt="Recharge ItPCS 250€">
-                      <h3>Recharge ItPCS 250€</h3>
-                      <p>Excellente pour des achats plus conséquents.</p>
-                  </div>
-                  <div class="produit">
-                      <img src="https://placehold.co/400x300/EEE/31343C?text=500€&font=Montserrat" alt="Recharge ItPCS 500€">
-                      <h3>Recharge ItPCS 500€</h3>
-                      <p>Parfaite pour des achats très conséquents.</p>
-                  </div>
-              </div>
-          </div>
-      </section>
-      <h2 class="Concu-pour" style="text-align: center; font-size: 35px;">Conçu spécialement pour <mark class="surligne-mark dm-serif-display-regular-gros">vous</mark>.</h2><br><br>
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="content-box">
-            <h2 class="dm-serif-display-regular-middle" style="text-align: center; font-size: 35px;">Notre Équipe</h2>
-            <p>Notre équipe dévouée travaille sans relâche pour vous offrir la meilleure expérience possible. Nous nous engageons à fournir un service de qualité et à répondre à toutes vos questions.</p>
-            <p>Nous sommes là pour vous aider.</p>
-        </div>
-    </div>
-    <br><br>
-    <div class="outer-wrapper">
-      <div class="scroll-wrapper">
-        <div class="scroll-line line1">
-          <h2>
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          </h2>
-        </div>
-        <div class="scroll-line line2">
-          <h2>
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-            Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          </h2>
-        </div>
-      </div>
-    </div>    
-    <br><br><br>
-    <h2 class="recrutement" style="color: #F8FF98; text-align: center; font-weight: bolder; font-size: 35px; font-family: 'DM Serif Display', serif;">Qu’attendez vous ?<br>Retrouvez nous à vos points de vente.</h2>
-    <br>
-    <div class="container py-5">
-        <div id="testimonial-root"></div>
-    </div>
-    </main>
-    <footer>
-        <p>© 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
-        <p style="line-height: 0; font-size: 7px;">Ceci est un concept, ItPCS est un compagnie fictive.</p>
-        <p style="line-height: 0; font-size: 7px;">Nous ne sommes pas affiliés à Mastercard ou à la</p>
-        <p style="line-height: 0; font-size: 7px;">International Telecommunications Public Correspondence Service.</p>
-    </footer>
-
-    <script>
-      const menuToggle = document.getElementById('menu-toggle');
-      const navUl = document.querySelector('nav ul');
-      menuToggle.addEventListener('click', () => {
-        navUl.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-        if(menuToggle.classList.contains('active')) {
-          menuToggle.querySelector('.fa-bars').style.display = 'none';
-          menuToggle.querySelector('.fa-times').style.display = 'inline-block';
+        if (!smooth) {
+          letters[index].color = letters[index].targetColor;
+          letters[index].colorProgress = 1;
         } else {
-          menuToggle.querySelector('.fa-bars').style.display = 'inline-block';
-          menuToggle.querySelector('.fa-times').style.display = 'none';
+          letters[index].colorProgress = 0;
+        }
+      }
+    };
+
+    const handleSmoothTransitions = () => {
+      let needsRedraw = false;
+      letters.forEach(letter => {
+        if (letter.colorProgress < 1) {
+          letter.colorProgress += 0.05;
+          if (letter.colorProgress > 1) letter.colorProgress = 1;
+
+          const startRgb = hexToRgb(letter.color);
+          const endRgb = hexToRgb(letter.targetColor);
+          if (startRgb && endRgb) {
+            letter.color = interpolateColor(startRgb, endRgb, letter.colorProgress);
+            needsRedraw = true;
+          }
         }
       });
+
+      if (needsRedraw) {
+        drawLetters();
+      }
+    };
+
+    const animate = () => {
+      const now = Date.now();
+      if (now - lastGlitchTime >= glitchSpeed) {
+        updateLetters();
+        drawLetters();
+        lastGlitchTime = now;
+      }
+
+      if (smooth) {
+        handleSmoothTransitions();
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      context = canvas.getContext('2d');
+      resizeCanvas();
+      animate();
+    });
+  </script>
+  <main class="container">
+    <section class="hero-section">
+      <h1 class="dm-serif-display-regular-gros">
+        Payez en toute <mark class="surligne-mark">sécurité</mark> avec
+        <span style="color: #F8FF98;;">ItPCS</span>
+      </h1><br>
+      
+      <main>
+          <div class="spacer"></div>
+          <div id="scroll-reveal-root"></div>
+      </main>
+    </section>
+
+    <div class="glow-buttoncontent">
+        <button class="glow-button" id="discoverBtn" onclick="window.location.href='#produits'">
+          <span class="content10">
+            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+            <span class="discoverBtntxt">Découvrir</span>
+          </span>
+        </button>
+    </div>
+    <script>
+      const button = document.getElementById('discoverBtn');
+      button.addEventListener('click', () => {
+        button.classList.remove('clicked');
+        void button.offsetWidth;
+        button.classList.add('clicked');
+      });
     </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script type="text/babel" src="assets/react-components.js"></script>
-    <script src="assets/app.js"></script>
+
+    <section id="produits">
+        <div class="container">
+            <h2 class="dm-serif-display-regular-gros" style="font-size: 35px;">Les Recharges ItPCS disponibles</h2>
+            <br>
+            <br>
+            <div class="liste-produits">
+                <div class="produit">
+                    <img src="https://placehold.co/400x300/EEE/31343C?text=20€&font=Montserrat" alt="Recharge ItPCS 20€">
+                    <h3>Recharge ItPCS 20€</h3>
+                    <p>Idéale pour les petits achats en ligne.</p>
+                </div>
+                <div class="produit">
+                    <img src="https://placehold.co/400x300/EEE/31343C?text=50€&font=Montserrat" alt="Recharge ItPCS 50€">
+                    <h3>Recharge ItPCS 50€</h3>
+                    <p>Super pour un cadeau d'anniversaire.</p>
+                </div>
+                <div class="produit">
+                    <img src="https://placehold.co/400x300/EEE/31343C?text=100€&font=Montserrat" alt="Recharge ItPCS 100€">
+                    <h3>Recharge ItPCS 100€</h3>
+                    <p>Adapté pour l'envoi d'argent dans un autre pays.</p>
+                </div>
+                <div class="produit">
+                    <img src="https://placehold.co/400x300/EEE/31343C?text=150€&font=Montserrat" alt="Recharge ItPCS 150€">
+                    <h3>Recharge ItPCS 150€</h3>
+                    <p>Créé pour se faire plaisir.</p>
+                </div>
+                <div class="produit">
+                    <img src="https://placehold.co/400x300/EEE/31343C?text=250€&font=Montserrat" alt="Recharge ItPCS 250€">
+                    <h3>Recharge ItPCS 250€</h3>
+                    <p>Excellente pour des achats plus conséquents.</p>
+                </div>
+                <div class="produit">
+                    <img src="https://placehold.co/400x300/EEE/31343C?text=500€&font=Montserrat" alt="Recharge ItPCS 500€">
+                    <h3>Recharge ItPCS 500€</h3>
+                    <p>Parfaite pour des achats très conséquents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h2 class="Concu-pour" style="text-align: center; font-size: 35px;">Conçu spécialement pour <mark class="surligne-mark dm-serif-display-regular-gros">vous</mark>.</h2><br><br>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="content-box">
+          <h2 class="dm-serif-display-regular-middle" style="text-align: center; font-size: 35px;">Notre Équipe</h2>
+          <p>Notre équipe dévouée travaille sans relâche pour vous offrir la meilleure expérience possible. Nous nous engageons à fournir un service de qualité et à répondre à toutes vos questions.</p>
+          <p>Nous sommes là pour vous aider.</p>
+      </div>
+  </div>
+  <br><br>
+  <div class="outer-wrapper">
+    <div class="scroll-wrapper">
+      <div class="scroll-line line1">
+        <h2>
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+        </h2>
+      </div>
+      <div class="scroll-line line2">
+        <h2>
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
+        </h2>
+      </div>
+    </div>
+  </div>    
+  <br><br><br>
+  <h2 class="recrutement" style="color: #F8FF98; text-align: center; font-weight: bolder; font-size: 35px; font-family: 'DM Serif Display', serif;">Qu’attendez vous ?<br>Retrouvez nous à vos points de vente.</h2>
+  <br>
+  <div class="container py-5">
+      <div id="testimonial-root"></div>
+  </div>
+  </main>
+  <footer>
+      <p>© 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
+      <p style="line-height: 0; font-size: 7px;">Ceci est un concept, ItPCS est un compagnie fictive.</p>
+      <p style="line-height: 0; font-size: 7px;">Nous ne sommes pas affiliés à Mastercard ou à la</p>
+      <p style="line-height: 0; font-size: 7px;">International Telecommunications Public Correspondence Service.</p>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navUl = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      if(menuToggle.classList.contains('active')) {
+        menuToggle.querySelector('.fa-bars').style.display = 'none';
+        menuToggle.querySelector('.fa-times').style.display = 'inline-block';
+      } else {
+        menuToggle.querySelector('.fa-bars').style.display = 'inline-block';
+        menuToggle.querySelector('.fa-times').style.display = 'none';
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel" src="assets/react-components.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
