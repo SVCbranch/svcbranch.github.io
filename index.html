@@ -1,166 +1,116 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0e0e0e">
-  <meta name="description" content="Payez en toute sécurité avec ItPCS - Découvrez la simplicité d'achat de vos recharges ItPCS en points de vente.">
-  <meta name="keywords" content="PCS, ItPCS, billets, coupons, recharges, MasterCard, paiements sécurisés">
-  <title>ItPCS - Paiement Sécurisé</title>
-  <link rel="icon" href="./assets/favicon.png">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="ItPCS">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/assets/favicon.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-  <meta property="og:title" content="ItPCS" />
-  <meta property="og:description" content="Payez en toute sécurité avec ItPCS" />
-  <meta property="og:url" content="https://itpcs.shop/" />
-  <meta property="og:image" content="https://itpcs.shop/assets/itpcs_white.png" />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="assets/css/style.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ItPCS - Rechargez en toute sécurité</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
+    
+    <!-- Tailwind (CDN kept for simplicity, though normally installed via npm in Vite) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+            },
+            colors: {
+              primary: {
+                DEFAULT: '#F3F59F', // The neon yellow/lime
+                dark: '#D1D37E',
+              },
+              dark: {
+                bg: '#050505',
+                surface: '#121212',
+                card: '#1E1E1E'
+              },
+              light: {
+                bg: '#FAFAFA',
+                surface: '#FFFFFF',
+                card: '#F3F4F6'
+              }
+            },
+            transitionTimingFunction: {
+              'smooth': 'cubic-bezier(0.23, 1, 0.32, 1)',
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'slide-up': 'slideUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 3px;
+      }
+      
+      /* Matrix/Noise Background Utilities */
+      .bg-matrix {
+        background-color: #050505;
+        background-image: linear-gradient(rgba(5, 5, 5, 0.94), rgba(5, 5, 5, 0.94)),
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" fill="%23333" font-family="monospace" font-size="10">10101</text><text x="30" y="50" fill="%23333" font-family="monospace" font-size="10">0110</text><text x="70" y="80" fill="%23333" font-family="monospace" font-size="10">1101</text></svg>');
+      }
+      
+      .bg-noise {
+         background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAlJyBoZWlnaHQ9JzQwMCUnPjxmaWx0ZXIgaWQ9J25vaXNlRmlsdGVyJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI25vaXNlRmlsdGVyKScgb3BhY2l0eT0nMC4wNScvPjwvc3ZnPg==');
+         opacity: 0.4;
+      }
+
+      .text-outline {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+      }
+      .text-outline-dark {
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body>
-  <header>
-    <a href="index.html">
-      <img src="assets/itpcs_white.png" alt="Logo ItPCS" width="150">
-    </a>
-    <nav>
-      <button id="menu-toggle" aria-label="Ouvrir/fermer le menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="comment-ca-marche.html">Comment ça marche ?</a></li>
-        <li><a href="ou-utiliser.html">Où utiliser ?</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <div id="glitch-banner">
-    <canvas id="glitch-canvas"></canvas>
-  </div>
-
-  <main class="container">
-    <section class="hero-section">
-      <h1 class="dm-serif-display-regular-gros">
-        Payez en toute <mark class="surligne-mark">sécurité</mark> avec
-        <span style="color: #F8FF98;;">ItPCS</span>
-      </h1><br>
-
-      <main>
-          <div class="spacer"></div>
-          <div id="scroll-reveal-root"></div>
-      </main>
-    </section>
-
-    <div class="glow-buttoncontent">
-        <button class="glow-button" id="discoverBtn" onclick="window.location.href='#produits'">
-          <span class="content10">
-            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-            <span class="discoverBtntxt">Découvrir</span>
-          </span>
-        </button>
-    </div>
-
-    <section id="produits">
-  <div class="container">
-    <h2 class="dm-serif-display-regular-gros" style="font-size: 35px; text-align: center; color: #F8FF98;">Les Recharges ItPCS disponibles</h2>
-    <br>
-    <div class="liste-produits">
-      <div class="produit" style="background: linear-gradient(135deg, #2f2f2f, #111111);">
-        <img src="https://placeholdit.com/400x300/eeeeee/31343C?text=20€&font=montserrat&font_size=100" alt="Recharge ItPCS 20€">
-        <h3>Recharge ItPCS 20€</h3>
-        <p>Idéale pour les petits achats en ligne.</p>
-      </div>
-      <div class="produit" style="background: linear-gradient(135deg, #2f2f2f, #111111);">
-        <img src="https://placeholdit.com/400x300/eeeeee/31343C?text=50€&font=montserrat&font_size=100" alt="Recharge ItPCS 50€">
-        <h3>Recharge ItPCS 50€</h3>
-        <p>Super pour un cadeau d'anniversaire.</p>
-      </div>
-      <div class="produit" style="background: linear-gradient(135deg, #2f2f2f, #111111);">
-        <img src="https://placeholdit.com/400x300/eeeeee/31343C?text=100€&font=montserrat&font_size=100" alt="Recharge ItPCS 100€">
-        <h3>Recharge ItPCS 100€</h3>
-        <p>Adapté pour l'envoi d'argent dans un autre pays.</p>
-      </div>
-      <div class="produit" style="background: linear-gradient(135deg, #2f2f2f, #111111);">
-        <img src="https://placeholdit.com/400x300/eeeeee/31343C?text=150€&font=montserrat&font_size=100" alt="Recharge ItPCS 150€">
-        <h3>Recharge ItPCS 150€</h3>
-        <p>Créé pour se faire plaisir.</p>
-      </div>
-      <div class="produit" style="background: linear-gradient(135deg, #2f2f2f, #111111);">
-        <img src="https://placeholdit.com/400x300/eeeeee/31343C?text=250€&font=montserrat&font_size=100" alt="Recharge ItPCS 250€">
-        <h3>Recharge ItPCS 250€</h3>
-        <p>Excellente pour des achats plus conséquents.</p>
-      </div>
-      <div class="produit" style="background: linear-gradient(135deg, #2f2f2f, #111111);">
-        <img src="https://placeholdit.com/400x300/eeeeee/31343C?text=500€&font=montserrat&font_size=100" alt="Recharge ItPCS 500€">
-        <h3>Recharge ItPCS 500€</h3>
-        <p>Parfaite pour des achats très conséquents.</p>
-      </div>
-    </div>
-  </div>
-</section>
-    <h2 class="Concu-pour" style="text-align: center; font-size: 35px;">Conçu spécialement pour <mark class="surligne-mark dm-serif-display-regular-gros">vous</mark>.</h2><br><br>
-    <div class="d-flex justify-content-center align-items-center">
-      <div class="content-box">
-          <h2 class="dm-serif-display-regular-middle" style="text-align: center; font-size: 35px;">Notre Équipe</h2>
-          <p>Notre équipe dévouée travaille sans relâche pour vous offrir la meilleure expérience possible. Nous nous engageons à fournir un service de qualité et à répondre à toutes vos questions.</p>
-          <p>Nous sommes là pour vous aider.</p>
-      </div>
-  </div>
-  <br><br>
-  <div class="outer-wrapper">
-    <div class="scroll-wrapper">
-      <div class="scroll-line line1">
-        <h2>
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-        </h2>
-      </div>
-      <div class="scroll-line line2">
-        <h2>
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-          Un service exceptionnel. Un service exceptionnel. Un service exceptionnel.
-        </h2>
-      </div>
-    </div>
-  </div>
-  <br><br><br>
-  <h2 class="recrutement" style="color: #F8FF98; text-align: center; font-weight: bolder; font-size: 35px; font-family: 'DM Serif Display', serif;">Qu’attendez vous ?<br>Retrouvez nous à vos points de vente.</h2>
-  <br>
-  <div class="container py-5">
-      <div id="testimonial-root"></div>
-  </div>
-  </main>
-  <footer>
-      <p>© 2025 <strong title="ItPCS est une compagnie factice.">ItPCS Inc</strong>. Tous droits réservés.</p>
-      <p style="line-height: 0; font-size: 7px;">Ceci est un concept, ItPCS est un compagnie fictive.</p>
-      <p style="line-height: 0; font-size: 7px;">Nous ne sommes pas affiliés à Mastercard ou à la</p>
-      <p style="line-height: 0; font-size: 7px;">International Telecommunications Public Correspondence Service.</p>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script type="text/babel" src="assets/react-components.js"></script>
-  <script src="assets/app.js"></script>
-  <script src="assets/js/main.js"></script>
+  <body class="antialiased selection:bg-primary selection:text-black">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
 </body>
-
 </html>
