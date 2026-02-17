@@ -3,8 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e0e0e">
+    <meta name="description" content="Payez en toute sécurité avec ItPCS - Découvrez la simplicité d'achat de vos recharges ItPCS en points de vente.">
+    <meta name="keywords" content="PCS, ItPCS, billets, coupons, recharges, MasterCard, paiements sécurisés">
     <title>ItPCS - Rechargez en toute sécurité</title>
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta property="og:title" content="ItPCS" />
+    <meta property="og:description" content="Payez en toute sécurité avec ItPCS" />
+    <meta property="og:url" content="https://itpcs.shop/" />
+    <meta property="og:image" content="https://itpcs.shop/itpcs_white.png" />
+    <meta property="og:type" content="website" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,6 +56,7 @@
               'float': 'float 6s ease-in-out infinite',
               'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'slide-up': 'slideUp 0.5s ease-out forwards',
+              'fade-in-down': 'fadeInDown 0.3s ease-out forwards',
             },
             keyframes: {
               float: {
@@ -56,6 +65,10 @@
               },
               slideUp: {
                 '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              fadeInDown: {
+                '0%': { transform: 'translateY(-10px)', opacity: '0' },
                 '100%': { transform: 'translateY(0)', opacity: '1' },
               }
             }
@@ -84,8 +97,8 @@
       }
       
       .bg-noise {
-         background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAlJyBoZWlnaHQ9JzQwMCUnPjxmaWx0ZXIgaWQ9J25vaXNlRmlsdGVyJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI25vaXNlRmlsdGVyKScgb3BhY2l0eT0nMC4wNScvPjwvc3ZnPg==');
-         opacity: 0.4;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAlJyBoZWlnaHQ9JzQwMCUnPjxmaWx0ZXIgaWQ9J25vaXNlRmlsdGVyJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI25vaXNlRmlsdGVyKScgb3BhY2l0eT0nMC4wNScvPjwvc3ZnPg==');
+        opacity: 0.4;
       }
 
       .text-outline {
