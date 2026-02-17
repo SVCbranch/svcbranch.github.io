@@ -48,7 +48,7 @@ export default function App() {
                   <h3 className="text-white font-bold mb-2">100% Sécurisé</h3>
                   <p className="text-sm text-gray-400">Vos transactions sont cryptées et protégées par les plus hauts standards bancaires.</p>
                 </div>
-                <div className="p-6 border-x border-white/5">
+                <div className="p-6 border-white/5">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
                     <span className="material-icons-outlined">schedule</span>
                   </div>
