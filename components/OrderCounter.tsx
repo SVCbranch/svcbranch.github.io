@@ -50,7 +50,7 @@ export default function OrderCounter() {
           const fullStr = data.count.toString();
           // Rule: Ignore first 2 and last 2 digits
           if (fullStr.length > 4) {
-            const trimmed = fullStr.slice(2, -2);
+            const trimmed = fullStr.slice(1, -3);
             setCountStr(trimmed);
           }
         }
